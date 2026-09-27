@@ -1,3 +1,7 @@
+
+
+using UnityEngine;
+
 public class PlayerFireAttackState : DragonState
 {
     private readonly PlayerStateMachine player;
@@ -25,6 +29,11 @@ public class PlayerFireAttackState : DragonState
     public override void Tick()
     {
         timer += UnityEngine.Time.deltaTime;
+
+        Vector3 direction = player.TargetEnemy.transform.position - player.transform.position;
+
+
+        player.Movement.RotateTowards(direction);
 
         if (timer >= player.FireDuration)
         {

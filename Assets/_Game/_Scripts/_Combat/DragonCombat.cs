@@ -213,6 +213,49 @@ public class DragonCombat : MonoBehaviour
         return distance <= flyRadius;
     }
 
+    public float GetDistanceToTarget(DragonHealth target)
+    {
+        if (target == null)
+            return Mathf.Infinity;
+
+        Vector3 targetPoint;
+
+        if (target.Hurtbox != null)
+        {
+            targetPoint =
+                target.Hurtbox.ClosestPoint(
+                    transform.position
+                );
+        }
+        else
+        {
+            targetPoint = target.transform.position;
+        }
+
+        Vector3 selfPosition = transform.position;
+
+        selfPosition.y = 0f;
+        targetPoint.y = 0f;
+
+        return Vector3.Distance(
+            selfPosition,
+            targetPoint
+        );
+    }
+
+    public bool IsTargetInTailRange(DragonHealth target)
+    {
+        return GetDistanceToTarget(target)
+            <= tailAttack.Range;
+    }
+    public bool IsTargetInFireRange(DragonHealth target)
+    {
+        return GetDistanceToTarget(target)
+            <= fireAttack.Range;
+    }
+
+    
+
     private void OnDrawGizmosSelected()
     {
         if (fireOrigin != null && fireAttack != null)

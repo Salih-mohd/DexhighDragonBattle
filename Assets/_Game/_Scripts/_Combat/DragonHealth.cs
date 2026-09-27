@@ -15,6 +15,7 @@ public class DragonHealth : MonoBehaviour
 
     public event Action<float, float> OnHealthChanged;
     public event Action OnDied;
+    public event Action<float> OnDamaged;
 
     private void Awake()
     {
@@ -27,9 +28,11 @@ public class DragonHealth : MonoBehaviour
             return;
 
         CurrentHealth -= damage;
+        
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, maxHealth);
 
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+        OnDamaged?.Invoke(damage);
 
         Debug.Log($"{name} Health: {CurrentHealth}");
 
