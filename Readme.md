@@ -74,7 +74,15 @@ Using AI helped speed up planning, implementation, and debugging. It was especia
 
 ### Playable Build
 
-The Windows build is available from the **Releases** section of this GitHub repository.
+The Windows build is available from the **Releases** section of this GitHub repository or from the **Google Drive link below**.
+
+GitHub Release:
+https://github.com/Salih-mohd/DexhighDragonBattle/releases/tag/v1.0.0
+
+Google Drive:
+https://drive.google.com/file/d/1UXbsarNIMX70HXEvRvFCQ4VFjdTimlri/view?usp=drive_link
+
+### How to Run
 
 1. Open the latest release.
 2. Download the Windows build `.zip` file.
