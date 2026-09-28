@@ -34,7 +34,7 @@ public class DragonHealth : MonoBehaviour
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
         OnDamaged?.Invoke(damage);
 
-        Debug.Log($"{name} Health: {CurrentHealth}");
+        //Debug.Log($"{name} Health: {CurrentHealth}");
 
         if (CurrentHealth <= 0f)
         {
@@ -51,6 +51,6 @@ public class DragonHealth : MonoBehaviour
 
         OnDied?.Invoke();
 
-        Debug.Log($"{name} died.");
+        //Debug.Log($"{name} died.");
     }
 }

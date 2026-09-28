@@ -3,6 +3,7 @@ using UnityEngine;
 public class DragonAnimationEvents : MonoBehaviour
 {
     [SerializeField] private DragonCombat combat;
+    [SerializeField] private DragonAudio dragonAudio;
 
     public void FireAttackHit()
     {
@@ -16,6 +17,10 @@ public class DragonAnimationEvents : MonoBehaviour
     public void FireAttackStop()
     {
         combat.StopFireVFX();
+    }
+    public void PlayFireSFX()
+    {
+        dragonAudio.PlayFire();
     }
 
     public void TailAttackHit()

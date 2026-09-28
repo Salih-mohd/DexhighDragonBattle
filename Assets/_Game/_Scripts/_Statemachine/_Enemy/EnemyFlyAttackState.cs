@@ -99,5 +99,10 @@ public class EnemyFlyAttackState : DragonState
 
     public override void Exit()
     {
+
+        enemy.TargetFX.Stop(
+        true,
+        ParticleSystemStopBehavior.StopEmittingAndClear
+        );
     }
 }

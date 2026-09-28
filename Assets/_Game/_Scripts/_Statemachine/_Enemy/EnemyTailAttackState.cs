@@ -16,6 +16,8 @@ public class EnemyTailAttackState : DragonState
     public override void Enter()
     {
         timer = 0f;
+        enemy.DragonAudio.PlayTakeOff();
+        enemy.TailFX.Play();
 
         enemy.Animator.CrossFadeInFixedTime(
             enemy.TailAnimation,
@@ -35,5 +37,6 @@ public class EnemyTailAttackState : DragonState
 
     public override void Exit()
     {
+        enemy.TailFX.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 }

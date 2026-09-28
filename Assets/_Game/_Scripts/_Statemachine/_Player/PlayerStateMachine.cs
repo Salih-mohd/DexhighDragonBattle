@@ -41,6 +41,9 @@ public class PlayerStateMachine : DragonStateMachine
 
     [Header("Fly Target")]
     [SerializeField] private DragonHealth targetEnemy;
+    [SerializeField] private ParticleSystem targetFX;
+
+    
 
     [Header("Fly Movement")]
     [SerializeField] private float flyMoveSpeed = 10f;
@@ -50,6 +53,11 @@ public class PlayerStateMachine : DragonStateMachine
     [Header("Flying Collider")]
     [SerializeField] private float airborneColliderOffset = 2f;
 
+    [Header("tail fx")]
+    [SerializeField] private ParticleSystem tailFX;
+
+    [Header("Audio")]
+    [SerializeField] private DragonAudio dragonAudio;
 
     public float AirborneColliderOffset => airborneColliderOffset;
     public DragonHealth TargetEnemy => targetEnemy;
@@ -59,6 +67,8 @@ public class PlayerStateMachine : DragonStateMachine
     public float FlyMoveSpeed => flyMoveSpeed;
     public float FlyLandingDistance => flyLandingDistance;
     public float MaxFlyTravelTime => maxFlyTravelTime;
+    public ParticleSystem TargetFX => targetFX;
+    public DragonAudio DragonAudio => dragonAudio;
 
 
     //private ParticleSystem fireFX;
@@ -79,6 +89,7 @@ public class PlayerStateMachine : DragonStateMachine
     public PlayerLandState LandState { get; private set; }
     public PlayerDieState DieState { get; private set; }
 
+    public ParticleSystem TailFX => tailFX;
     public float ToFlyAttackCrossFadeDuration => toFlyAttackCrossFadeDuration;
     public float ToLandCrossFadeDuration => toLandCrossFadeDuration;
     public float ToIdleCrossFadeDuration => toIdleCrossFadeDuration;
@@ -236,6 +247,8 @@ public class PlayerStateMachine : DragonStateMachine
 
     private void HandleDeath()
     {
+        targetFX.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
+        tailFX.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         SwitchState(DieState);
     }
 

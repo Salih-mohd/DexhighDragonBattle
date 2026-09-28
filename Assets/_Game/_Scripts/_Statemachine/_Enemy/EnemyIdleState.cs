@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyIdleState : DragonState
 {
     private readonly EnemyStateMachine enemy;
-    private float timer;
+    //private float timer;
 
     public EnemyIdleState(EnemyStateMachine stateMachine)
         : base(stateMachine)
@@ -13,7 +13,7 @@ public class EnemyIdleState : DragonState
 
     public override void Enter()
     {
-        timer = 0f;
+        //timer = 0f;
 
         enemy.Animator.CrossFadeInFixedTime(
             enemy.IdleAnimation,

@@ -100,5 +100,9 @@ public class PlayerFlyAttackState : DragonState
 
     public override void Exit()
     {
+        player.TargetFX.Stop(
+        true,
+        ParticleSystemStopBehavior.StopEmittingAndClear
+    );
     }
 }

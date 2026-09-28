@@ -6,6 +6,7 @@ public class DragonMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float gravity = -20f;
+    [SerializeField] private PolygonArenaBounds arenaBounds;
 
     private bool isAirborne;
     private Vector3 groundedControllerCenter;
@@ -28,9 +29,23 @@ public class DragonMovement : MonoBehaviour
     {
         direction = Vector3.ClampMagnitude(direction, 1f);
 
-        characterController.Move(
-            direction * moveSpeed * Time.deltaTime
-        );
+        Vector3 movement =
+    direction * moveSpeed * Time.deltaTime;
+
+Vector3 desiredPosition =
+    transform.position + movement;
+
+Vector3 clampedPosition =
+    arenaBounds != null
+        ? arenaBounds.ClampPosition(desiredPosition)
+        : desiredPosition;
+
+Vector3 finalMovement =
+    clampedPosition - transform.position;
+
+characterController.Move(
+    finalMovement
+);
 
         if (direction.sqrMagnitude > 0.01f)
         {
@@ -47,10 +62,25 @@ public class DragonMovement : MonoBehaviour
 
     public void Move(Vector3 direction, float speed)
     {
-        direction = Vector3.ClampMagnitude(direction, 1f);
+        direction =
+            Vector3.ClampMagnitude(direction, 1f);
+
+        Vector3 movement =
+            direction * speed * Time.deltaTime;
+
+        Vector3 desiredPosition =
+            transform.position + movement;
+
+        Vector3 clampedPosition =
+            arenaBounds != null
+                ? arenaBounds.ClampPosition(desiredPosition)
+                : desiredPosition;
+
+        Vector3 finalMovement =
+            clampedPosition - transform.position;
 
         characterController.Move(
-            direction * speed * Time.deltaTime
+            finalMovement
         );
 
         if (direction.sqrMagnitude > 0.01f)
@@ -58,11 +88,12 @@ public class DragonMovement : MonoBehaviour
             Quaternion targetRotation =
                 Quaternion.LookRotation(direction);
 
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime
-            );
+            transform.rotation =
+                Quaternion.Slerp(
+                    transform.rotation,
+                    targetRotation,
+                    rotationSpeed * Time.deltaTime
+                );
         }
     }
 

@@ -15,6 +15,13 @@ public class PlayerTakeOffState : DragonState
     {
         timer = 0f;
 
+        player.DragonAudio.PlayTakeOff();
+        player.TargetFX.transform.position =
+        player.LockedFlyTargetPosition;
+        
+
+        player.TargetFX.Play();
+
         player.Movement.SetAirborne(true);
 
         player.Animator.CrossFadeInFixedTime(
@@ -30,6 +37,9 @@ public class PlayerTakeOffState : DragonState
         Vector3 direction =
             player.LockedFlyTargetPosition -
             player.transform.position;
+
+        
+        
 
         player.Movement.RotateTowards(direction);
 

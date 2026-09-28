@@ -36,6 +36,7 @@ public class EnemyStateMachine : DragonStateMachine
     [SerializeField] private float flyLandingDistance = 1f;
     [SerializeField] private float maxFlyTravelTime = 3f;
     [SerializeField] private float toFlyAttackCrossFadeDuration = 0.1f;
+    [SerializeField] private ParticleSystem targetFX;
 
     [Header("Death")]
     [SerializeField] private string dieAnimation = "Die";
@@ -43,10 +44,18 @@ public class EnemyStateMachine : DragonStateMachine
     [Header("Global Cooldown")]
     [SerializeField] private float globalCooldown = 1.5f;
 
+    [Header("tail fx")]
+    [SerializeField] private ParticleSystem tailFX;
+
+    [Header("Audio")]
+    [SerializeField] private DragonAudio dragonAudio;
+
     private float globalCooldownEndTime;
 
     public string DieAnimation => dieAnimation;
     public EnemyDieState DieState { get; private set; }
+    public DragonAudio DragonAudio => dragonAudio;
+    public ParticleSystem TailFX => tailFX;
     public bool IsGlobalCooldownReady =>
         Time.time >= globalCooldownEndTime;
 
@@ -59,6 +68,7 @@ public class EnemyStateMachine : DragonStateMachine
     public EnemyFlyAttackState FlyAttackState { get; private set; }
     public EnemyLandState LandState { get; private set; }
 
+    public ParticleSystem TargetFX => targetFX;
     public EnemyMovement Movement => movement;
     public DragonCombat Combat => combat;
     public DragonHealth Health => health;
@@ -226,6 +236,8 @@ public class EnemyStateMachine : DragonStateMachine
 
     private void HandleDeath()
     {
+        targetFX.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        tailFX.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         SwitchState(DieState);
     }
 

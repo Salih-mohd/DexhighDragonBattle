@@ -17,6 +17,12 @@ public class EnemyTakeOffState : DragonState
     {
         timer = 0f;
 
+        enemy.DragonAudio.PlayTakeOff();
+        enemy.TargetFX.transform.position =
+        enemy.LockedFlyTargetPosition;
+
+        enemy.TargetFX.Play();
+
         enemy.Animator.CrossFadeInFixedTime(
             enemy.TakeOffAnimation,
             enemy.CrossFadeDuration
