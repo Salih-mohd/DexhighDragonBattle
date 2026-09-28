@@ -21,15 +21,7 @@ Control the player dragon and defeat the AI-controlled enemy dragon using the th
 
 Each ability has its own damage value, range, and cooldown. Use movement and positioning to avoid enemy attacks and choose the right ability based on distance.
 
-### Playable Build
 
-The Windows build is available from the **Releases** section of this GitHub repository.
-
-1. Open the latest release.
-2. Download the Windows build `.zip` file.
-3. Extract the ZIP.
-4. Open the extracted folder.
-5. Run the game executable.
 
 ## Asset Sources
 
@@ -79,3 +71,13 @@ This reduced unnecessary runtime allocations and also made the popup system reus
 ### How AI Improved the Workflow
 
 Using AI helped speed up planning, implementation, and debugging. It was especially useful for breaking larger features into smaller steps and exploring implementation options quickly.
+
+### Playable Build
+
+The Windows build is available from the **Releases** section of this GitHub repository.
+
+1. Open the latest release.
+2. Download the Windows build `.zip` file.
+3. Extract the ZIP.
+4. Open the extracted folder.
+5. Run `DragonBattle.exe`.
